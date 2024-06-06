@@ -1,0 +1,11 @@
+package model
+
+import "gorm.io/gorm"
+
+// 数据库模型
+
+type {{.appNameExport}} struct {
+	gorm.Model
+}
+
+

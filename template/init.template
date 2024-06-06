@@ -1,0 +1,59 @@
+package {{.appName}}
+
+import (
+	"context"
+	"IOTProject/kernel"
+	"IOTProject/internal/app"
+	"IOTProject/internal/app/{{.appName}}/router"
+	"sync"
+)
+
+type (
+	{{.appNameExport}} struct {
+		Name string
+		app.UnimplementedModule
+	}
+)
+
+func (p *{{.appNameExport}}) Info() string {
+	return p.Name
+}
+
+func (p *{{.appNameExport}}) PreInit(engine *kernel.Engine) error {
+    //dao.InitMS(engine.SKLMySQL.DB)
+	return nil
+}
+
+func (p *{{.appNameExport}}) Init(*kernel.Engine) error {
+	return nil
+}
+
+func (p *{{.appNameExport}}) PostInit(*kernel.Engine) error {
+	return nil
+}
+
+func (p *{{.appNameExport}}) Load(engine *kernel.Engine) error {
+	// 加载flamego api
+	router.App{{.appNameExport}}Init(engine.GIN)
+	return nil
+}
+
+func (p *{{.appNameExport}}) Start(engine *kernel.Engine) error {
+	return nil
+}
+
+func (p *{{.appNameExport}}) Stop(wg *sync.WaitGroup, ctx context.Context) error {
+	defer wg.Done()
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+		return nil
+	}
+}
+
+func (p *{{.appNameExport}}) OnConfigChange() func(*kernel.Engine) error {
+	return func(engine *kernel.Engine) error {
+		return nil
+	}
+}

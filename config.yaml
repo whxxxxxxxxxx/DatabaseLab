@@ -1,0 +1,33 @@
+Mode: debug
+ProgramName: ""
+BaseURL: ""
+Author: ""
+Listen: "0.0.0.0"
+Port: "8001"
+MainPostgres:
+  Host: "localhost"
+  Port: "19432"
+  User: "user"
+  Pass: "password"
+  Database: "hduhelp"
+  Schema: "public"
+  Debug: true
+  Trace: false
+SKLMysql:
+  Host: "localhost"
+  Port: "19306"
+  User: "user"
+  Pass: "password"
+  Database: "picker"
+  Debug: false
+  Trace: false
+MainCache:
+  Host: "localhost:19379"
+  Type: "node"
+  Pass: ""
+  Tls: false
+Sentry:
+  Dsn: ""
+Auth:
+  Secret: "<random>"
+  Issuer: "MJCLOUDS"

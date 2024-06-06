@@ -1,0 +1,20 @@
+Mode: debug
+ProgramName: ""
+BaseURL: ""
+Author: ""
+Listen: "0.0.0.0"
+Port: "8001"
+SKLMysql:
+    Host: "localhost"
+    Port: "20306"
+    User: "user"
+    Pass: "password"
+    Database: "devices"
+    Debug: false
+    Trace: false
+#TODO 添加opengauss的配置
+OpenGauss:
+    Host: "localhost"
+    Port:
+
+
