@@ -1,8 +1,7 @@
 package config
 
 import (
-	"IOTProject/store/mysql"
-	"IOTProject/store/openGauss"
+	"DatabaseLab/store/openGauss"
 )
 
 type GlobalConfig struct {
@@ -12,6 +11,5 @@ type GlobalConfig struct {
 	AUTHOR      string            `yaml:"Author"`
 	Listen      string            `yaml:"Listen"`
 	Port        string            `yaml:"Port"`
-	SKLMysql    mysql.OrmConf     `yaml:"SKLMysql"`
 	OpenGauss   openGauss.OrmConf `yaml:"OpenGauss"`
 }

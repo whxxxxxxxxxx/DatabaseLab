@@ -1,6 +1,6 @@
 package appInitialize
 
-import "IOTProject/internal/app"
+import "DatabaseLab/internal/app"
 
 var (
 	apps = make([]app.Module, 0)

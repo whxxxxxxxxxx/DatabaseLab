@@ -2,9 +2,9 @@ package {{.appName}}
 
 import (
 	"context"
-	"IOTProject/kernel"
-	"IOTProject/internal/app"
-	"IOTProject/internal/app/{{.appName}}/router"
+	"DatabaseLab/kernel"
+	"DatabaseLab/internal/app"
+	"DatabaseLab/internal/app/{{.appName}}/router"
 	"sync"
 )
 

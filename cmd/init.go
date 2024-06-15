@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"IOTProject/cmd/config"
-	"IOTProject/cmd/create"
-	"IOTProject/cmd/server"
+	"DatabaseLab/cmd/config"
+	"DatabaseLab/cmd/create"
+	"DatabaseLab/cmd/server"
 	"github.com/spf13/cobra"
 	"os"
 )

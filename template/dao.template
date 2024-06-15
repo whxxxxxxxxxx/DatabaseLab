@@ -2,7 +2,7 @@ package dao
 
 import (
 	"gorm.io/gorm"
-	"IOTProject/internal/app/{{.appName}}/model"
+	"DatabaseLab/internal/app/{{.appName}}/model"
 )
 
 type {{.appName}} struct {

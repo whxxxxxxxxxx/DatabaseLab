@@ -1,12 +1,12 @@
 package dao
 
 import (
-	"IOTProject/internal/app/ping/model"
-	"IOTProject/store/mysql"
+	"DatabaseLab/internal/app/ping/model"
+	"DatabaseLab/store/openGauss"
 )
 
 var (
-	Ping *mysql.Orm
+	Ping *openGauss.Orm
 )
 
 func AutoMigrate() error {

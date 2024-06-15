@@ -1,7 +1,7 @@
 package router
 
 import (
-	"IOTProject/middleware/response"
+	"DatabaseLab/middleware/response"
 	"errors"
 	"github.com/gin-gonic/gin"
 )

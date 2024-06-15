@@ -1,6 +1,6 @@
 package stringx
 
-import "IOTProject/pkg/langx"
+import "DatabaseLab/pkg/langx"
 
 const defaultMask = '*'
 

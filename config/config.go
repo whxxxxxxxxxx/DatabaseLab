@@ -1,7 +1,7 @@
 package config
 
 import (
-	"IOTProject/pkg/fs"
+	"DatabaseLab/pkg/fs"
 	"github.com/fsnotify/fsnotify"
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
@@ -54,7 +54,7 @@ func GenConfig(configYml string, force bool) error {
 		if err != nil {
 			return errors.New("Generate file with error: " + err.Error())
 		}
-		println("config file `config.yaml` generate success in " + configYml)
+		println("config file `config.yaml.example` generate success in " + configYml)
 	} else {
 		return errors.New(configYml + " already exist, use -f to Force coverage")
 	}

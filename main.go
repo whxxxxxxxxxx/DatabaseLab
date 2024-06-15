@@ -1,7 +1,7 @@
 package main
 
 import (
-	"IOTProject/cmd"
+	"DatabaseLab/cmd"
 )
 
 func main() {
