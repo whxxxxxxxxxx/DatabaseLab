@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:mysql://localhost:20306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="test" uuid="3dadc17c-24b4-4132-bc0d-785b08018a7a">
+    <data-source source="LOCAL" name="databaseLab" uuid="95cfc24b-428f-4576-bb3e-01719f94e8b2">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://1.92.80.233:26000/databaselab</jdbc-url>
+      <jdbc-url>jdbc:postgresql://1.92.80.233:26000/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
