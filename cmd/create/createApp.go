@@ -1,8 +1,8 @@
 package create
 
 import (
-	"IOTProject/pkg/color"
-	"IOTProject/pkg/fs"
+	"DatabaseLab/pkg/color"
+	"DatabaseLab/pkg/fs"
 	"bytes"
 	"errors"
 	"github.com/spf13/cobra"

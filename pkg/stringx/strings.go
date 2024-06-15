@@ -1,7 +1,7 @@
 package stringx
 
 import (
-	"IOTProject/pkg/langx"
+	"DatabaseLab/pkg/langx"
 	"errors"
 
 	"unicode"

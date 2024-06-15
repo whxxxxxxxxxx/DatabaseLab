@@ -1,6 +1,6 @@
 package appInitialize
 
-import "IOTProject/internal/app/{{.appName}}"
+import "DatabaseLab/internal/app/{{.appName}}"
 
 func init() {
 	apps = append(apps, &{{.appName}}.{{.appNameExport}}{Name: "{{.appNameExport}} module"})

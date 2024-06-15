@@ -2,9 +2,10 @@ package openGauss
 
 import (
 	"fmt"
-	"gorm.io/driver/mysql"
+	og "github.com/stitchcula/OpenGauss"
 	"gorm.io/gorm"
 	"os"
+	"strconv"
 )
 
 type (
@@ -14,8 +15,6 @@ type (
 		User     string
 		Pass     string
 		Database string
-		Debug    bool
-		Trace    bool
 
 		Conf *gorm.Config
 		*gorm.DB
@@ -49,9 +48,7 @@ func NewMysqlOrm(conf OrmConf, opts ...Option) (*Orm, error) {
 	}
 	opts = append([]Option{WithAddr(conf.Host, conf.Port)}, opts...)
 	opts = append([]Option{WithAuth(conf.User, conf.Pass)}, opts...)
-	opts = append([]Option{WithTrace(conf.Trace)}, opts...)
 	opts = append([]Option{WithDBName(conf.Database)}, opts...)
-	opts = append([]Option{WithDebug(conf.Debug)}, opts...)
 
 	return newOrm(opts...)
 }
@@ -59,18 +56,6 @@ func NewMysqlOrm(conf OrmConf, opts ...Option) (*Orm, error) {
 func WithGormConf(conf *gorm.Config) Option {
 	return func(r *Orm) {
 		r.Conf = conf
-	}
-}
-
-func WithTrace(trace bool) Option {
-	return func(r *Orm) {
-		r.Trace = trace
-	}
-}
-
-func WithDebug(debug bool) Option {
-	return func(r *Orm) {
-		r.Debug = debug
 	}
 }
 
@@ -104,12 +89,32 @@ func newOrm(opts ...Option) (*Orm, error) {
 		conf = &gorm.Config{}
 	}
 	//TODO 这里做opengauss的连接
-	var dsn = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		m.User, m.Pass, m.Host, m.Port, m.Database)
-	db, err := gorm.Open(mysql.Open(dsn), conf)
-	if m.Debug {
-		db = db.Debug()
+	num64, err := strconv.ParseUint(m.Port, 10, 16)
+	port := uint16(num64)
+	config := og.Config{
+		Host:     m.Host,
+		Port:     port,
+		Database: m.Database,
+		User:     m.User,
+		Password: m.Pass,
+	}
+	db, err := gorm.Open(og.New(config), conf)
+	if err != nil {
+		fmt.Sprintf("open opengauss error: %v", err)
+		return nil, fmt.Errorf("open opengauss error: %v", err)
 	}
 	m.DB = db
 	return m, err
 }
+
+//config := og.Config{
+//Host:     "192.168.xx.xx",
+//Port:     5432,
+//Database: "db_tpcc",
+//User:     "user_persistence",
+//Password: "1234@abc",
+//RuntimeParams: map[string]string{
+//"search_path": "my_schema",
+//},
+//}
+//db, err := gorm.Open(og.New(config), &gorm.Config{})

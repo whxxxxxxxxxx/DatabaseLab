@@ -18,8 +18,6 @@ type (
 		User     string `yaml:"User"`
 		Pass     string `yaml:"Pass"`
 		Database string `yaml:"Database"`
-		Debug    bool   `yaml:"Debug"`
-		Trace    bool   `yaml:"Trace"`
 	}
 )
 

@@ -1,8 +1,0 @@
-login("admin", "123456");
-dbPath = "dfs://IotMonitorDB";
-
-// 检查数据库是否存在
-if (not existsDatabase(dbPath)) {
-    // 如果数据库不存在，则创建数据库
-    db = database(dbPath, VALUE, 2020.01M..2040.12M);
-}

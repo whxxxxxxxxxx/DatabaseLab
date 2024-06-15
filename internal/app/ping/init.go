@@ -1,9 +1,9 @@
 package ping
 
 import (
-	"IOTProject/internal/app"
-	"IOTProject/internal/app/ping/router"
-	"IOTProject/kernel"
+	"DatabaseLab/internal/app"
+	"DatabaseLab/internal/app/ping/router"
+	"DatabaseLab/kernel"
 	"context"
 
 	"sync"

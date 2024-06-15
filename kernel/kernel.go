@@ -1,9 +1,8 @@
 package kernel
 
 import (
-	"IOTProject/config"
-	"IOTProject/store/mysql"
-	"IOTProject/store/tdengine"
+	"DatabaseLab/config"
+	"DatabaseLab/store/openGauss"
 	"context"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -13,8 +12,7 @@ type (
 	Engine struct {
 		GIN *gin.Engine
 
-		SKLMySQL  *mysql.Orm
-		OpenGauss *tdengine.Orm
+		OpenGauss *openGauss.Orm
 
 		Ctx    context.Context
 		Cancel context.CancelFunc
