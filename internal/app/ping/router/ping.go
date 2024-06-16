@@ -8,7 +8,7 @@ import (
 
 func AppPingInit(e *gin.Engine) {
 	e.GET("/ping/v1", func(c *gin.Context) {
-		response.HttpResponse(c, response.ReturnResponse(c, 200000, "ping Init test", nil, nil))
+		response.HttpResponse(c, response.ReturnResponse(200000, "ping Init test", nil, nil))
 	})
 
 	e.GET("/ping/v1/err", func(c *gin.Context) {

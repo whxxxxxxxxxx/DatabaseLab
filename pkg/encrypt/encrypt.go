@@ -7,7 +7,7 @@ import (
 	"errors"
 )
 
-//AES堆成加密
+//AES对称加密
 
 var Encrypt *Encryption
 

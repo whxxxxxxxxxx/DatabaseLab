@@ -10,4 +10,6 @@ const (
 	ErrorUserNotFound  = 30003
 	ErrorPasswordWrong = 30004
 	ErrorAuthToken     = 30005
+	ErrorEmailFormat   = 30006
+	ErrorImgUpload     = 30007
 )

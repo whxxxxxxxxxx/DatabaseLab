@@ -3,7 +3,7 @@ ProgramName: ""
 BaseURL: ""
 Author: ""
 Listen: "0.0.0.0"
-Port: "8002"
+Port: "8001"
 OpenGauss:
     Host: "1.92.80.233"
     Port: "26000"

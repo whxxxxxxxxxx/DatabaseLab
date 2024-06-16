@@ -12,7 +12,7 @@ type JsonResponse struct {
 	Data    any    `json:"data,omitempty"`
 }
 
-func ReturnResponse(c *gin.Context, code int, msg string, data any, err any) JsonResponse {
+func ReturnResponse(code int, msg string, data any, err any) JsonResponse {
 	return JsonResponse{
 		Code:    code,
 		Message: msg,
@@ -43,5 +43,5 @@ func HttpResponse(c *gin.Context, Res JsonResponse) {
 }
 
 func ServiceError(c *gin.Context, err ...any) {
-	HttpResponse(c, ReturnResponse(c, 400, "内部异常", nil, err))
+	HttpResponse(c, ReturnResponse(400, "内部异常", nil, err))
 }

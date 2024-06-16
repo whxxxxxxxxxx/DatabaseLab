@@ -8,12 +8,10 @@ import (
 
 func App{{.appNameExport}}Init(e *gin.Engine) {
 	e.GET("/{{.appName}}/v1", func(c *gin.Context){
-	    response.HTTPSuccess(c, map[string]any{
-            "message": "{{.appName}} Init Success",
-        })
+	    response.HttpResponse(response.ReturnResponse(c, 200000, "users Init test", nil, nil))
     })
 
     e.GET("/{{.appName}}/v1/err", func(c *gin.Context){
-        response.HTTPFail(c, 500000, "{{.appName}} Init test error", errors.New("this is err"))
+        response.ServiceError(c, errors.New("error test"))
     })
 }

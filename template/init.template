@@ -4,6 +4,7 @@ import (
 	"context"
 	"DatabaseLab/kernel"
 	"DatabaseLab/internal/app"
+	"DatabaseLab/internal/app/{{.appName}}/dao"
 	"DatabaseLab/internal/app/{{.appName}}/router"
 	"sync"
 )
@@ -20,7 +21,7 @@ func (p *{{.appNameExport}}) Info() string {
 }
 
 func (p *{{.appNameExport}}) PreInit(engine *kernel.Engine) error {
-    //dao.InitMS(engine.SKLMySQL.DB)
+    dao.InitOP(engine.OpenGauss.DB)
 	return nil
 }
 

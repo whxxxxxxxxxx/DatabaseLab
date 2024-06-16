@@ -8,7 +8,7 @@ var (
 	{{.appNameExport}} = &{{.appName}}{}
 )
 
-func InitMS(db *gorm.DB) error {
+func InitOP(db *gorm.DB) error {
 	err := {{.appNameExport}}.Init(db)
 	if err != nil {
 		return err
