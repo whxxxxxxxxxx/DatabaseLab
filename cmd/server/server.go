@@ -68,6 +68,7 @@ func setUp() {
 	// 初始化 Gin
 	engine.GIN = gin.Default()
 	engine.GIN.Use(cors.Default())
+	engine.GIN.StaticFS("/assets", http.Dir("./assets"))
 }
 
 // 存储介质连接

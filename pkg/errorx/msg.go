@@ -5,13 +5,14 @@ var MsgFlags = map[int]string{
 	Error:         "fail",
 	InvalidParams: "参数错误",
 
-	ErrorExistUser:     "用户已存在",
-	ErrorFailEncrypt:   "密码加密失败",
-	ErrorUserNotFound:  "用户不存在",
-	ErrorPasswordWrong: "密码错误",
-	ErrorAuthToken:     "token 认证失败",
-	ErrorEmailFormat:   "邮箱格式错误",
-	ErrorImgUpload:     "图片上传失败",
+	ErrorExistUser:          "用户已存在",
+	ErrorFailEncrypt:        "密码加密失败",
+	ErrorUserNotFound:       "用户不存在",
+	ErrorPasswordWrong:      "密码错误",
+	ErrorAuthToken:          "token 认证失败",
+	ErrorEmailFormat:        "邮箱格式错误",
+	ErrorImgUpload:          "图片上传失败",
+	ErrorAuthCheckTokenFail: "token 验证失败",
 }
 
 func GetMsg(code int) string {

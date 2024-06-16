@@ -2,17 +2,23 @@ package response
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 type JsonResponse struct {
-	Code    int    `json:"code"`
-	Error   any    `json:"error,omitempty"`
-	Message string `json:"message,omitempty"`
-	Data    any    `json:"data,omitempty"`
+	Code    int         `json:"code"`
+	Error   error       `json:"error,omitempty"`
+	Message string      `json:"message,omitempty"`
+	Data    interface{} `json:"data,omitempty"`
 }
 
-func ReturnResponse(code int, msg string, data any, err any) JsonResponse {
+type ResponseData struct {
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data"`
+	Error   string      `json:"error"`
+}
+
+func ReturnResponse(code int, msg string, data interface{}, err error) JsonResponse {
 	return JsonResponse{
 		Code:    code,
 		Message: msg,
@@ -26,22 +32,24 @@ func HttpResponse(c *gin.Context, Res JsonResponse) {
 	msg := Res.Message
 	data := Res.Data
 	err := Res.Error
-	if code == 0 {
-		c.JSON(http.StatusOK, &JsonResponse{
+	if err != nil {
+		c.JSON(int(code/1000), &ResponseData{
 			Code:    code,
 			Message: msg,
 			Data:    data,
+			Error:   err.Error(),
 		})
-		return
+	} else {
+		c.JSON(int(code/1000), &ResponseData{
+			Code:    code,
+			Message: msg,
+			Data:    data,
+			Error:   "",
+		})
 	}
-	c.JSON(int(code/1000), &JsonResponse{
-		Code:    code,
-		Message: msg,
-		Data:    data,
-		Error:   err,
-	})
+
 }
 
-func ServiceError(c *gin.Context, err ...any) {
+func ServiceError(c *gin.Context, err error) {
 	HttpResponse(c, ReturnResponse(400, "内部异常", nil, err))
 }
