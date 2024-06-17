@@ -17,6 +17,7 @@ type UserRegisterService struct {
 	UserName string `json:"user_name" form:"user_name"`
 	Password string `json:"password" form:"password"`
 	Email    string `json:"email" form:"email"`
+	Avatar   string `json:"avatar" form:"avatar"`
 }
 
 type UserLoginService struct {

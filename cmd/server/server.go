@@ -70,8 +70,8 @@ func setUp() {
 	//engine.GIN.Use(cors.Default())
 	engine.GIN.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:3000"},
-		AllowMethods:     []string{"POST", "GET", "OPTIONS"}, // 允许使用的HTTP方法
-		AllowHeaders:     []string{"Origin", "X-Requested-With", "Content-Type", "Accept"},
+		AllowMethods:     []string{"POST", "GET", "OPTIONS"},                                                // 允许使用的HTTP方法
+		AllowHeaders:     []string{"Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"}, // 在这里添加 Authorization
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
@@ -79,6 +79,7 @@ func setUp() {
 		},
 		MaxAge: 12 * time.Hour,
 	}))
+
 	engine.GIN.StaticFS("/assets", http.Dir("./assets"))
 }
 

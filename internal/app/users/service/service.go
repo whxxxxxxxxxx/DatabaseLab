@@ -27,16 +27,14 @@ func Register(ctx *gin.Context, service dto.UserRegisterService) response.JsonRe
 		return response.ReturnResponse(code, errorx.GetMsg(code), nil, nil)
 	}
 	//正则检查email格式
-
-	if !emailx.CheckEmail(service.Email) {
+	if service.Email != "" && !emailx.CheckEmail(service.Email) {
 		code = errorx.ErrorEmailFormat
 		return response.ReturnResponse(code, errorx.GetMsg(code), nil, nil)
 	}
-
 	user := model.Users{
 		NickName: service.NickName,
 		UserName: service.UserName,
-		Avatar:   "avatar.jpg",
+		Avatar:   service.Avatar,
 		Money:    0,
 		Email:    service.Email,
 		Status:   passwdx.Active,

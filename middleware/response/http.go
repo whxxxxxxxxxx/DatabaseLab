@@ -33,14 +33,14 @@ func HttpResponse(c *gin.Context, Res JsonResponse) {
 	data := Res.Data
 	err := Res.Error
 	if err != nil {
-		c.JSON(int(code/1000), &ResponseData{
+		c.JSON(200, &ResponseData{
 			Code:    code,
 			Message: msg,
 			Data:    data,
 			Error:   err.Error(),
 		})
 	} else {
-		c.JSON(int(code/1000), &ResponseData{
+		c.JSON(200, &ResponseData{
 			Code:    code,
 			Message: msg,
 			Data:    data,
