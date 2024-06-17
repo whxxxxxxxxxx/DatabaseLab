@@ -67,7 +67,18 @@ func setUp() {
 
 	// 初始化 Gin
 	engine.GIN = gin.Default()
-	engine.GIN.Use(cors.Default())
+	//engine.GIN.Use(cors.Default())
+	engine.GIN.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowMethods:     []string{"POST", "GET", "OPTIONS"}, // 允许使用的HTTP方法
+		AllowHeaders:     []string{"Origin", "X-Requested-With", "Content-Type", "Accept"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+			return origin == "http://localhost:3000"
+		},
+		MaxAge: 12 * time.Hour,
+	}))
 	engine.GIN.StaticFS("/assets", http.Dir("./assets"))
 }
 
