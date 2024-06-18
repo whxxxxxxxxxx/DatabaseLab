@@ -19,30 +19,30 @@ func BuildCategoryResponse(category []*model.Category) []*CategoryResponse {
 }
 
 type ProductRequest struct {
-	ProductName   string `json:"product_name"`
-	CategoryId    uint   `json:"category_id"`
-	Title         string `json:"title"`
-	Info          string `json:"info"`
-	ImgPath       string `json:"img_path"`
-	Price         string `json:"price"`
-	DiscountPrice string `json:"discount_price"`
-	OnSale        bool   `json:"on_sale"`
-	Num           int    `json:"num"`
-	BossID        uint   `json:"boss_id"`
+	ProductName   string  `json:"product_name" form:"product_name"`
+	CategoryId    uint    `json:"category_id" form:"category_id"`
+	Title         string  `json:"title" form:"title"`
+	Info          string  `json:"info" form:"info"`
+	ImgPath       string  `json:"img_path" form:"img_path"`
+	Price         float64 `json:"price" form:"price"`
+	DiscountPrice float64 `json:"discount_price" form:"discount_price"`
+	OnSale        bool    `json:"on_sale" form:"on_sale"`
+	Num           int     `json:"num" form:"num"`
+	BossID        uint    `json:"boss_id" form:"boss_id"`
 }
 
 type ProductResponse struct {
-	ID            uint   `json:"id"`
-	ProductName   string `json:"product_name"`
-	CategoryId    uint   `json:"category_id"`
-	Title         string `json:"title"`
-	Info          string `json:"info"`
-	ImgPath       string `json:"img_path"`
-	Price         string `json:"price"`
-	DiscountPrice string `json:"discount_price"`
-	OnSale        bool   `json:"on_sale"`
-	Num           int    `json:"num"`
-	BossID        uint   `json:"boss_id"`
+	ID            uint    `json:"id"`
+	ProductName   string  `json:"product_name"`
+	CategoryId    uint    `json:"category_id"`
+	Title         string  `json:"title"`
+	Info          string  `json:"info"`
+	ImgPath       string  `json:"img_path"`
+	Price         float64 `json:"price"`
+	DiscountPrice float64 `json:"discount_price"`
+	OnSale        bool    `json:"on_sale"`
+	Num           int     `json:"num"`
+	BossID        uint    `json:"boss_id"`
 }
 
 func BuildProductResponse(product *model.Product) *ProductResponse {
@@ -82,7 +82,7 @@ func BuildProductListResponse(products []*model.Product) []*ProductResponse {
 }
 
 type ProductListRequest struct {
-	ProductName string `json:"product_name"`
-	CategoryId  uint   `json:"category_id"`
-	BossId      uint   `json:"boss_id"`
+	ProductName string `json:"product_name" form:"product_name"`
+	CategoryId  int    `json:"category_id" form:"category_id"`
+	BossId      int    `json:"boss_id" form:"boss_id"`
 }

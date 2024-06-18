@@ -32,16 +32,16 @@ type ProductParamsImg struct {
 
 type Product struct {
 	gorm.Model
-	ProductName   string `json:"product_name"`
-	CategoryId    uint   `json:"category_id" gorm:"not null"`
-	Title         string `json:"title"`
-	Info          string `gorm:"size:1000"`
-	ImgPath       string
-	Price         string
-	DiscountPrice string
-	OnSale        bool `gorm:"default:false"`
-	Num           int
-	BossID        uint
+	ProductName   string  `json:"product_name" form:"product_name"`
+	CategoryId    uint    `json:"category_id" gorm:"not null" form:"category_id"`
+	Title         string  `json:"title" form:"title"`
+	Info          string  `gorm:"size:1000" form:"info"`
+	ImgPath       string  `form:"img_path"`
+	Price         float64 `form:"price"`
+	DiscountPrice float64 `form:"discount_price"`
+	OnSale        bool    `gorm:"default:false" form:"on_sale"`
+	Num           int     `form:"num"`
+	BossID        uint    `form:"boss_id"`
 }
 
 type Category struct {

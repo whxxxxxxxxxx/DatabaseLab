@@ -22,7 +22,7 @@ func (u *product) GetCategoryNames() ([]*model.Category, error) {
 	return categories, err
 }
 
-func (u *product) AddProduct(product *dto.ProductRequest) error {
+func (u *product) AddProduct(product *model.Product) error {
 	return u.DB.Model(&model.Product{}).Create(product).Error
 }
 

@@ -75,7 +75,7 @@ func setUp() {
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
-			return origin == "http://localhost:3000"
+			return origin == "http://localhost:3000" || origin == "http://192.168.50.89:3000"
 		},
 		MaxAge: 12 * time.Hour,
 	}))

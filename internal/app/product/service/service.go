@@ -5,6 +5,7 @@ import (
 	"DatabaseLab/internal/app/product/dto"
 	"DatabaseLab/internal/app/product/model"
 	"DatabaseLab/middleware/response"
+	"DatabaseLab/pkg/ctl"
 	"DatabaseLab/pkg/errorx"
 	"github.com/gin-gonic/gin"
 	"strconv"
@@ -22,14 +23,31 @@ func GetCategory(c *gin.Context) response.JsonResponse {
 }
 
 func AddProduct(c *gin.Context) response.JsonResponse {
+	u, err := ctl.GetUserInfo(c.Request.Context())
+	if err != nil {
+		return response.ReturnResponse(errorx.Error, errorx.GetMsg(errorx.Error), nil, err)
+	}
 	code := errorx.Success
 	productDao := dao.Product
 	var product dto.ProductRequest
-	if err := c.ShouldBindJSON(&product); err != nil {
+	product.BossID = u.Id
+	if err := c.ShouldBind(&product); err != nil {
 		code = errorx.Error
 		return response.ReturnResponse(code, errorx.GetMsg(code), nil, nil)
 	}
-	err := productDao.AddProduct(&product)
+	productModel := model.Product{
+		ProductName:   product.ProductName,
+		CategoryId:    product.CategoryId,
+		Title:         product.Title,
+		Info:          product.Info,
+		ImgPath:       product.ImgPath,
+		Price:         product.Price,
+		DiscountPrice: product.DiscountPrice,
+		OnSale:        product.OnSale,
+		Num:           product.Num,
+		BossID:        product.BossID,
+	}
+	err = productDao.AddProduct(&productModel)
 	if err != nil {
 		code = errorx.Error
 	}
@@ -64,7 +82,7 @@ func UpdateProduct(c *gin.Context) response.JsonResponse {
 	productDao := dao.Product
 	id := c.Param("id")
 	var product model.Product
-	if err := c.ShouldBindJSON(&product); err != nil {
+	if err := c.ShouldBind(&product); err != nil {
 		code = errorx.Error
 		return response.ReturnResponse(code, errorx.GetMsg(code), nil, nil)
 	}
@@ -83,7 +101,7 @@ func GetProductList(c *gin.Context) response.JsonResponse {
 	code := errorx.Success
 	productDao := dao.Product
 	var product dto.ProductListRequest
-	if err := c.ShouldBindJSON(&product); err != nil {
+	if err := c.ShouldBind(&product); err != nil {
 		code = errorx.Error
 		return response.ReturnResponse(code, errorx.GetMsg(code), nil, nil)
 	}
