@@ -92,3 +92,35 @@ func UserInfo(ctx *gin.Context) response.JsonResponse {
 	}
 	return response.ReturnResponse(code, errorx.GetMsg(code), dto.BuildUser(user), nil)
 }
+
+func UpdateUserInfo(ctx *gin.Context, service dto.UserUpdateService) response.JsonResponse {
+	u, err := ctl.GetUserInfo(ctx.Request.Context())
+	if err != nil {
+		return response.ReturnResponse(errorx.Error, errorx.GetMsg(errorx.Error), nil, err)
+	}
+	code := errorx.Success
+	userDao := dao.Users
+	user, err := userDao.GetUserById(u.Id)
+	if err != nil {
+		code = errorx.Error
+		return response.ReturnResponse(code, errorx.GetMsg(code), nil, nil)
+	}
+	if service.NickName != "" {
+		user.NickName = service.NickName
+	}
+	if service.Email != "" {
+		if !emailx.CheckEmail(service.Email) {
+			code = errorx.ErrorEmailFormat
+			return response.ReturnResponse(code, errorx.GetMsg(code), nil, nil)
+		}
+		user.Email = service.Email
+	}
+	if service.Avatar != "" {
+		user.Avatar = service.Avatar
+	}
+	err = userDao.UpdateUser(user)
+	if err != nil {
+		code = errorx.Error
+	}
+	return response.ReturnResponse(code, errorx.GetMsg(code), nil, nil)
+}

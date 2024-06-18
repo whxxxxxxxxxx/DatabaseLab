@@ -26,6 +26,12 @@ type UserLoginService struct {
 	Password string `json:"password" form:"password"`
 }
 
+type UserUpdateService struct {
+	NickName string `json:"nick_name" form:"nick_name"`
+	Email    string `json:"email" form:"email"`
+	Avatar   string `json:"avatar" form:"avatar"`
+}
+
 func BuildUser(user *model.Users) *User {
 	return &User{
 		ID:       user.ID,

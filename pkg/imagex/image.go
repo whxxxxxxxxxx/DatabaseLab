@@ -27,7 +27,7 @@ func UploadImg(file multipart.File) (string, error) {
 		return "", err // 文件复制失败，返回错误
 	}
 
-	return UnixString + ".img", nil // 返回保存的文件路径
+	return UnixString + ".jpg", nil // 返回保存的文件路径
 }
 
 func GetImg(name string) (*os.File, error) {

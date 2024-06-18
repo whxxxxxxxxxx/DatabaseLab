@@ -27,5 +27,6 @@ func AppUsersInit(e *gin.Engine) {
 	authed.Use(middleware.AuthMiddleware())
 	{
 		authed.GET("info", handler.HandleUserInfo)
+		authed.PUT("info", handler.HandleUserUpdate)
 	}
 }

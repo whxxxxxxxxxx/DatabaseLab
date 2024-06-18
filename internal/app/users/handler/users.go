@@ -31,3 +31,13 @@ func HandleUserInfo(c *gin.Context) {
 	res := service.UserInfo(c)
 	response.HttpResponse(c, res)
 }
+
+func HandleUserUpdate(c *gin.Context) {
+	var userUpdate dto.UserUpdateService
+	if err := c.ShouldBind(&userUpdate); err == nil {
+		res := service.UpdateUserInfo(c, userUpdate)
+		response.HttpResponse(c, res)
+	} else {
+		response.ServiceError(c, err)
+	}
+}
